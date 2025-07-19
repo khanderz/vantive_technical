@@ -1,30 +1,30 @@
 # 📝 Task Management App
 
-A simple **React-based Task Management App** built with **Vite**, **TypeScript**, and **Material-UI**.  
-It demonstrates **state management with Context + useReducer**, **mock API integration**, **optimistic UI updates**, and **persistent storage** with `localStorage`.
+A simple React-based Task Management App built with Vite, TypeScript, and Material-UI.  
+It demonstrates state management with Context + useReducer, mock API integration, optimistic UI updates, and persistent storage with `localStorage`.
 
 # About
 
 ## Features:
 
-✅ **Add, Edit, Delete tasks**  
-✅ **Mark tasks as completed**  
-✅ **Filter tasks** by **All / Completed / Pending**  
-✅ **Persist tasks across reloads** with `localStorage`  
-✅ **Fetch initial tasks from JSONPlaceholder mock API**  
-✅ **Optimistic UI updates** for a smooth experience  
-✅ **Responsive & mobile-friendly** UI with Material-UI
+- Add, Edit, Delete tasks
+- Mark tasks as completed
+- Filter tasks by All / Completed / Pending
+- Persist tasks across reloads with `localStorage`
+- Fetch initial tasks from JSONPlaceholder mock API
+- Optimistic UI updates for a smooth experience
+- Responsive & mobile-friendly UI with Material-UI
 
 ---
 
 ## Tech Stack:
 
-- **React 18 + Vite** (fast dev environment)
-- **TypeScript** (type-safe development)
-- **React Context + useReducer** (state management)
-- **Material-UI** (UI components & styling)
-- **JSONPlaceholder** (mock API backend)
-- **localStorage** (persistent state)
+- React 18 + Vite (fast dev environment)
+- TypeScript (type-safe development)
+- React Context + useReducer (state management)
+- Material-UI (UI components & styling)
+- JSONPlaceholder (mock API backend)
+- localStorage (persistent state)
 
 ---
 
