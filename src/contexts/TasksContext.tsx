@@ -1,4 +1,10 @@
-import { createContext, useContext, type ReactNode, useMemo } from "react";
+import {
+  createContext,
+  useContext,
+  type ReactNode,
+  useMemo,
+  useState,
+} from "react";
 import { useTasks } from "../hooks/useTasks";
 
 export interface Task {
@@ -7,10 +13,20 @@ export interface Task {
   completed: boolean;
 }
 
+export enum TaskFilter {
+  ALL = "all",
+  COMPLETED = "completed",
+  PENDING = "pending",
+}
+
 interface TasksContextValue {
-  tasks: Task[];
+  filteredTasks: Task[];
+
   loading: boolean;
   error: string | null;
+  filter: TaskFilter;
+  setFilter: (filter: TaskFilter) => void;
+
   addTask: (title: Task["title"]) => Promise<void> | void;
   editTask: (id: Task["id"], title: Task["title"]) => Promise<void> | void;
   toggleComplete: (id: Task["id"]) => Promise<void> | void;
@@ -36,11 +52,24 @@ export const TasksProvider = ({ children }: TasksProviderProps) => {
     reload,
   } = useTasks(5);
 
+  const [filter, setFilter] = useState<TaskFilter>(TaskFilter.ALL);
+
+  const filteredTasks = useMemo(() => {
+    if (filter === TaskFilter.COMPLETED) return tasks.filter(t => t.completed);
+    if (filter === TaskFilter.PENDING) return tasks.filter(t => !t.completed);
+    return tasks;
+  }, [tasks, filter]);
+
   const value = useMemo(
     () => ({
-      tasks,
+      filteredTasks,
+
       loading,
       error,
+
+      filter,
+      setFilter,
+
       addTask,
       editTask,
       toggleComplete,
@@ -48,9 +77,10 @@ export const TasksProvider = ({ children }: TasksProviderProps) => {
       reload,
     }),
     [
-      tasks,
+      filteredTasks,
       loading,
       error,
+      filter,
       addTask,
       editTask,
       toggleComplete,

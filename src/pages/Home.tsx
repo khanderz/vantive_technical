@@ -1,21 +1,11 @@
-import { useState } from "react";
 import { Container, Grid, Typography, Header } from "../components/atoms";
 import { TaskItem, TaskInput } from "../components/molecules";
 import { useTasksContext } from "../contexts";
-import { ButtonGroup, Button } from "@mui/material";
 
 export const Home = () => {
-  const { tasks, loading, error } = useTasksContext();
+  const { filteredTasks, loading, error } = useTasksContext();
 
   const componentName = "Home";
-
-  const [filter, setFilter] = useState<"all" | "completed" | "pending">("all");
-
-  const filteredTasks = tasks.filter(task => {
-    if (filter === "completed") return task.completed;
-    if (filter === "pending") return !task.completed;
-    return true;
-  });
 
   return (
     <Container
@@ -48,27 +38,6 @@ export const Home = () => {
           Loading tasks...
         </Typography>
       )}
-
-      <ButtonGroup sx={{ mb: 2 }}>
-        <Button
-          variant={filter === "all" ? "contained" : "outlined"}
-          onClick={() => setFilter("all")}
-        >
-          All
-        </Button>
-        <Button
-          variant={filter === "completed" ? "contained" : "outlined"}
-          onClick={() => setFilter("completed")}
-        >
-          Completed
-        </Button>
-        <Button
-          variant={filter === "pending" ? "contained" : "outlined"}
-          onClick={() => setFilter("pending")}
-        >
-          Pending
-        </Button>
-      </ButtonGroup>
 
       <Grid
         componentName={`${componentName}-task-items-column`}
