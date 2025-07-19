@@ -34,7 +34,9 @@ interface TasksContextValue {
   reload: () => Promise<void> | void;
 }
 
-const TasksContext = createContext<TasksContextValue | undefined>(undefined);
+export const TasksContext = createContext<TasksContextValue | undefined>(
+  undefined,
+);
 
 interface TasksProviderProps {
   children: ReactNode;

@@ -3,6 +3,7 @@ import {
   useTasksContext,
   type Task,
   TaskFilter,
+  TasksContext,
 } from "./TasksContext.tsx";
 
-export { TasksProvider, useTasksContext, type Task, TaskFilter };
+export { TasksProvider, useTasksContext, type Task, TaskFilter, TasksContext };

@@ -69,6 +69,7 @@ export const TaskItem = ({ componentName, task }: TaskItemProps) => {
           componentName={`${componentName}-edit-task`}
           onClick={handleEdit}
           color="primary"
+          aria-label="edit task"
         >
           <EditIcon />
         </IconButton>
@@ -76,6 +77,7 @@ export const TaskItem = ({ componentName, task }: TaskItemProps) => {
           componentName={`${componentName}-delete-task`}
           onClick={handleDelete}
           color="error"
+          aria-label="close task"
         >
           <CloseIcon />
         </IconButton>
