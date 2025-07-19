@@ -1,7 +1,6 @@
 # 📝 Task Management App
 
-A simple React-based Task Management App built with Vite, TypeScript, and Material-UI.  
-It demonstrates state management with Context + useReducer, mock API integration, optimistic UI updates, and persistent storage with `localStorage`.
+A simple React-based Task Management App built with Vite, TypeScript, and Material-UI. It demonstrates state management with Context + useReducer, mock API integration, optimistic UI updates, and persistent storage with `localStorage`.
 
 # About
 
@@ -19,8 +18,8 @@ It demonstrates state management with Context + useReducer, mock API integration
 
 ## Tech Stack:
 
-- React 18 + Vite (fast dev environment)
-- TypeScript (type-safe development)
+- React 18 + Vite (fast dev env)
+- TypeScript (type-safe dev with strict type assertions)
 - React Context + useReducer (state management)
 - Material-UI (UI components & styling)
 - JSONPlaceholder (mock API backend)
