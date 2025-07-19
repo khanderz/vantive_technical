@@ -66,7 +66,7 @@ export const Home = () => {
         direction="row"
         sx={{
           alignItems: "center",
-          mb: 2,
+          mb: 4,
         }}
       >
         <Grid componentName={componentName} sx={{ flexGrow: 1, mr: 2 }}>

@@ -22,7 +22,13 @@ export const useTasks = (initialLimit = 5) => {
 
     try {
       const apiTasks = await fetchTasks(initialLimit);
-      dispatch({ type: "SET_TASKS", tasks: apiTasks });
+
+      const mergedTasks = [
+        ...tasks,
+        ...apiTasks.filter(apiTask => !tasks.some(t => t.id === apiTask.id)),
+      ];
+
+      dispatch({ type: "SET_TASKS", tasks: mergedTasks });
     } catch (err) {
       console.error("Failed to fetch tasks:", err);
       setError("Failed to fetch tasks. Please try again.");
