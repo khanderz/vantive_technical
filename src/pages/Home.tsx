@@ -5,16 +5,15 @@ import {
   LoadingButton,
   Typography,
   TextField,
-  IconButton,
 } from "../components/atoms";
 import { TaskItem } from "../components/molecules/TaskItem";
-import AddIcon from "@mui/icons-material/Add";
 import { useTasksContext, type Task } from "../contexts";
 
 export const Home = () => {
   const componentName = "Home";
 
   const [taskInput, setTaskInput] = useState<Task["title"]>("");
+
   const { tasks, loading, error, addTask } = useTasksContext();
 
   const handleAddTask = () => {
@@ -32,7 +31,14 @@ export const Home = () => {
         padding: 2,
       }}
     >
-      <Typography componentName={componentName} variant="h4" gutterBottom>
+      <Typography
+        componentName={componentName}
+        variant="h4"
+        gutterBottom
+        sx={{
+          mb: 8,
+        }}
+      >
         Task Manager
       </Typography>
 
