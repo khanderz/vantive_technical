@@ -1,69 +1,69 @@
-# React + TypeScript + Vite
+# 📝 Task Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple **React-based Task Management App** built with **Vite**, **TypeScript**, and **Material-UI**.  
+It demonstrates **state management with Context + useReducer**, **mock API integration**, **optimistic UI updates**, and **persistent storage** with `localStorage`.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# About
 
-## Expanding the ESLint configuration
+## Features:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+✅ **Add, Edit, Delete tasks**  
+✅ **Mark tasks as completed**  
+✅ **Filter tasks** by **All / Completed / Pending**  
+✅ **Persist tasks across reloads** with `localStorage`  
+✅ **Fetch initial tasks from JSONPlaceholder mock API**  
+✅ **Optimistic UI updates** for a smooth experience  
+✅ **Responsive & mobile-friendly** UI with Material-UI
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Tech Stack:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **React 18 + Vite** (fast dev environment)
+- **TypeScript** (type-safe development)
+- **React Context + useReducer** (state management)
+- **Material-UI** (UI components & styling)
+- **JSONPlaceholder** (mock API backend)
+- **localStorage** (persistent state)
+
+---
+
+# Getting Started
+
+## Step 1: Clone repo + CD into root directory
+
+```bash
+# Replace <your-username> with your GitHub username
+
+git clone git@github.com:<your-username>/vantive_technical.git
+
+cd vantive_technical
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Step 2: Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+## Step 3: Run app locally
+
+```bash
+npm run dev
+```
+
+The app will run at http://localhost:5173/
+
+---
+
+# Design Decisions
+
+-React Context + useReducer → Simple, predictable state updates without Redux overhead.
+
+-localStorage + API merge → Keeps tasks persistent while still syncing initial API data.
+
+-Optimistic UI → Makes the app feel instant, even if API fails.
+
+Material-UI → Quick, responsive styling with minimal CSS. Created reusable components with MUI, but imported directly from the library modules to improve performance and reduce bundle size.
