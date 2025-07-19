@@ -9,23 +9,17 @@ import {
 } from "../components/atoms";
 import { TaskItem } from "../components/molecules/TaskItem";
 import AddIcon from "@mui/icons-material/Add";
+import { useTasksContext, type Task } from "../contexts";
 
 export const Home = () => {
   const componentName = "Home";
-  const placeholderTasks = [
-    "Finish the React task manager",
-    "Review pull requests",
-    "Write unit tests for components",
-    "Update project documentation",
-    "Refactor the TaskItem component",
-  ];
 
-  const [taskInput, setTaskInput] = useState("");
-  const [tasks, setTasks] = useState<string[]>(placeholderTasks);
+  const [taskInput, setTaskInput] = useState<Task["title"]>("");
+  const { tasks, loading, error, addTask } = useTasksContext();
 
   const handleAddTask = () => {
     if (taskInput.trim() !== "") {
-      setTasks(prev => [...prev, taskInput.trim()]);
+      addTask(taskInput.trim());
       setTaskInput("");
     }
   };
@@ -42,6 +36,16 @@ export const Home = () => {
         Task Manager
       </Typography>
 
+      {error && (
+        <Typography
+          componentName={`${componentName}-error`}
+          color="error"
+          gutterBottom
+        >
+          {error}
+        </Typography>
+      )}
+
       <Grid
         componentName={`${componentName}-task-input-row`}
         container
@@ -51,7 +55,7 @@ export const Home = () => {
           mb: 2,
         }}
       >
-        <Grid componentName={componentName} sx={{ flexGrow: 1 }}>
+        <Grid componentName={componentName} sx={{ flexGrow: 1, mr: 2 }}>
           <TextField
             componentName={componentName}
             placeholder="Add a new task"
@@ -59,14 +63,25 @@ export const Home = () => {
             onChange={e => setTaskInput(e.target.value)}
           />
         </Grid>
-        <IconButton
+        <LoadingButton
           componentName={componentName}
-          color="primary"
+          loading={loading}
+          disabled={!taskInput.trim() || !!error || loading}
           onClick={handleAddTask}
         >
-          <AddIcon />
-        </IconButton>
+          Add Task
+        </LoadingButton>
       </Grid>
+
+      {loading && (
+        <Typography
+          componentName={`${componentName}-loading`}
+          variant="body2"
+          gutterBottom
+        >
+          Loading tasks...
+        </Typography>
+      )}
 
       <Grid
         componentName={`${componentName}-task-items-column`}
@@ -79,15 +94,10 @@ export const Home = () => {
           mb: 2,
         }}
       >
-        {tasks.map((taskLabel, index) => (
-          <TaskItem
-            key={index}
-            componentName={componentName}
-            taskLabel={taskLabel}
-          />
+        {tasks.map(task => (
+          <TaskItem key={task.id} componentName={componentName} task={task} />
         ))}{" "}
       </Grid>
-      <LoadingButton componentName={componentName}>Add Task</LoadingButton>
     </Container>
   );
 };
