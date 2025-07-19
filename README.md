@@ -80,3 +80,9 @@ npm run test
 ```bash
 npm run test:watch
 ```
+
+## To run end-to-end tests:
+
+```bash
+npm run test:e2e
+```
