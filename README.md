@@ -64,3 +64,19 @@ The app will run at http://localhost:5173/
 - Optimistic UI → Makes the app feel instant, even if API fails.
 
 - Material-UI → Quick, responsive styling with minimal CSS. Created reusable components with MUI, but imported directly from the library modules to improve performance and reduce bundle size.
+
+---
+
+# Testing
+
+## To run unit tests:
+
+```bash
+npm run test
+```
+
+## To run unit tests with watch:
+
+```bash
+npm run test:watch
+```
