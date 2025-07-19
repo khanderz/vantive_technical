@@ -1,21 +1,14 @@
 import { useState } from "react";
-import {
-  Container,
-  Grid,
-  LoadingButton,
-  Typography,
-  TextField,
-} from "../components/atoms";
-import { TaskItem } from "../components/molecules/TaskItem";
-import { useTasksContext, type Task } from "../contexts";
+import { Container, Grid, Typography, Header } from "../components/atoms";
+import { TaskItem, TaskInput } from "../components/molecules";
+import { useTasksContext } from "../contexts";
 import { ButtonGroup, Button } from "@mui/material";
 
 export const Home = () => {
-  const { tasks, loading, error, addTask } = useTasksContext();
+  const { tasks, loading, error } = useTasksContext();
 
   const componentName = "Home";
 
-  const [taskInput, setTaskInput] = useState<Task["title"]>("");
   const [filter, setFilter] = useState<"all" | "completed" | "pending">("all");
 
   const filteredTasks = tasks.filter(task => {
@@ -23,13 +16,6 @@ export const Home = () => {
     if (filter === "pending") return !task.completed;
     return true;
   });
-
-  const handleAddTask = () => {
-    if (taskInput.trim() !== "") {
-      addTask(taskInput.trim());
-      setTaskInput("");
-    }
-  };
 
   return (
     <Container
@@ -39,16 +25,7 @@ export const Home = () => {
         padding: 2,
       }}
     >
-      <Typography
-        componentName={componentName}
-        variant="h4"
-        gutterBottom
-        sx={{
-          mb: 8,
-        }}
-      >
-        Task Manager
-      </Typography>
+      <Header componentName={componentName} title="Task Manager" />
 
       {error && (
         <Typography
@@ -60,32 +37,7 @@ export const Home = () => {
         </Typography>
       )}
 
-      <Grid
-        componentName={`${componentName}-task-input-row`}
-        container
-        direction="row"
-        sx={{
-          alignItems: "center",
-          mb: 4,
-        }}
-      >
-        <Grid componentName={componentName} sx={{ flexGrow: 1, mr: 2 }}>
-          <TextField
-            componentName={componentName}
-            placeholder="Add a new task"
-            value={taskInput}
-            onChange={e => setTaskInput(e.target.value)}
-          />
-        </Grid>
-        <LoadingButton
-          componentName={componentName}
-          loading={loading}
-          disabled={!taskInput.trim() || !!error || loading}
-          onClick={handleAddTask}
-        >
-          Add Task
-        </LoadingButton>
-      </Grid>
+      <TaskInput componentName={componentName} />
 
       {loading && (
         <Typography
