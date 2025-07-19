@@ -97,10 +97,25 @@ export const Home = () => {
         </Typography>
       )}
 
-      <ButtonGroup>
-        <Button onClick={() => setFilter("all")}>All</Button>
-        <Button onClick={() => setFilter("completed")}>Completed</Button>
-        <Button onClick={() => setFilter("pending")}>Pending</Button>
+      <ButtonGroup sx={{ mb: 2 }}>
+        <Button
+          variant={filter === "all" ? "contained" : "outlined"}
+          onClick={() => setFilter("all")}
+        >
+          All
+        </Button>
+        <Button
+          variant={filter === "completed" ? "contained" : "outlined"}
+          onClick={() => setFilter("completed")}
+        >
+          Completed
+        </Button>
+        <Button
+          variant={filter === "pending" ? "contained" : "outlined"}
+          onClick={() => setFilter("pending")}
+        >
+          Pending
+        </Button>
       </ButtonGroup>
 
       <Grid
@@ -114,9 +129,19 @@ export const Home = () => {
           mb: 2,
         }}
       >
-        {tasks.map(task => (
+        {filteredTasks.map(task => (
           <TaskItem key={task.id} componentName={componentName} task={task} />
-        ))}{" "}
+        ))}
+
+        {filteredTasks.length === 0 && !loading && (
+          <Typography
+            componentName={`${componentName}-no-tasks`}
+            variant="body2"
+            color="text.secondary"
+          >
+            No tasks found for this filter.
+          </Typography>
+        )}
       </Grid>
     </Container>
   );
