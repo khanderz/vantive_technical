@@ -13,8 +13,8 @@ export const Grid = ({ componentName, ...props }: GridProps) => {
       data-testid={`${componentName}-Grid`}
       sx={{
         alignItems: "center",
-        width: "100%",
         display: "flex",
+        ...props.sx,
       }}
     >
       {props.children}
