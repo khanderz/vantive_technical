@@ -9,7 +9,8 @@ import type { Task } from "../contexts";
 import { tasksReducer } from "../reducers";
 
 export const useTasks = (initialLimit = 5) => {
-  const initialTasks: Task[] = [];
+  const localTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+  const initialTasks = Array.isArray(localTasks) ? localTasks : [];
 
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
   const [loading, setLoading] = useState(false);
@@ -33,6 +34,10 @@ export const useTasks = (initialLimit = 5) => {
   useEffect(() => {
     loadTasks();
   }, [loadTasks]);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = async (title: Task["title"]) => {
     const tempTask: Task = {

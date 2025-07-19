@@ -8,13 +8,21 @@ import {
 } from "../components/atoms";
 import { TaskItem } from "../components/molecules/TaskItem";
 import { useTasksContext, type Task } from "../contexts";
+import { ButtonGroup, Button } from "@mui/material";
 
 export const Home = () => {
+  const { tasks, loading, error, addTask } = useTasksContext();
+
   const componentName = "Home";
 
   const [taskInput, setTaskInput] = useState<Task["title"]>("");
+  const [filter, setFilter] = useState<"all" | "completed" | "pending">("all");
 
-  const { tasks, loading, error, addTask } = useTasksContext();
+  const filteredTasks = tasks.filter(task => {
+    if (filter === "completed") return task.completed;
+    if (filter === "pending") return !task.completed;
+    return true;
+  });
 
   const handleAddTask = () => {
     if (taskInput.trim() !== "") {
@@ -88,6 +96,12 @@ export const Home = () => {
           Loading tasks...
         </Typography>
       )}
+
+      <ButtonGroup>
+        <Button onClick={() => setFilter("all")}>All</Button>
+        <Button onClick={() => setFilter("completed")}>Completed</Button>
+        <Button onClick={() => setFilter("pending")}>Pending</Button>
+      </ButtonGroup>
 
       <Grid
         componentName={`${componentName}-task-items-column`}
