@@ -1,39 +1,37 @@
-import { Container, LoadingButton, Typography } from "../components/atoms";
-import Grid from "@mui/material/Grid";
+import {
+  Container,
+  Grid,
+  LoadingButton,
+  Typography,
+} from "../components/atoms";
+import { TaskItem } from "../components/molecules/TaskItem";
 
 export const Home = () => {
   const componentName = "Home";
+
+  const taskLabel = "test";
 
   return (
     <Container
       componentName={componentName}
       sx={{
         flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
         padding: 2,
       }}
     >
       <Typography componentName={componentName} variant="h4" gutterBottom>
         Task Manager
       </Typography>
+
       <Grid
+        componentName={`${componentName}-task-items-column`}
         container
         direction="column"
         sx={{
           justifyContent: "center",
-          alignItems: "center",
         }}
       >
-        <Grid>
-          <Typography
-            componentName={componentName}
-            variant="body1"
-            gutterBottom
-          >
-            Task Manager
-          </Typography>
-        </Grid>
+        <TaskItem componentName={componentName} taskLabel={taskLabel} />
       </Grid>
       <LoadingButton componentName={componentName}>Add Task</LoadingButton>
     </Container>
