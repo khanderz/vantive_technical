@@ -24,7 +24,9 @@
     "noUncheckedSideEffectImports": true,
 
     "jsxImportSource": "react",
-    "noPropertyAccessFromIndexSignature": true
+    "noPropertyAccessFromIndexSignature": true,
+
+    "esModuleInterop": true
   },
   "include": ["src"]
 }
