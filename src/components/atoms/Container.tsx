@@ -3,14 +3,9 @@ import type { ContainerProps as MuiContainerProps } from "@mui/material/Containe
 
 export interface ContainerProps extends MuiContainerProps {
   componentName: string;
-  children: React.ReactNode;
 }
 
-export const Container = ({
-  componentName,
-  children,
-  ...props
-}: ContainerProps) => {
+export const Container = ({ componentName, ...props }: ContainerProps) => {
   return (
     <MuiContainer
       {...props}
@@ -23,7 +18,7 @@ export const Container = ({
         ...props.sx,
       }}
     >
-      {children}
+      {props.children}
     </MuiContainer>
   );
 };

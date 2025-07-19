@@ -1,5 +1,5 @@
-import { Typography, Button } from "@mui/material";
-import { Container } from "../components/atoms";
+import { Container, LoadingButton, Typography } from "../components/atoms";
+import Grid from "@mui/material/Grid";
 
 export const Home = () => {
   const componentName = "Home";
@@ -14,12 +14,28 @@ export const Home = () => {
         padding: 2,
       }}
     >
-      <Typography variant="h4" gutterBottom>
+      <Typography componentName={componentName} variant="h4" gutterBottom>
         Task Manager
       </Typography>
-      <Button variant="contained" color="primary">
-        Add Task
-      </Button>
+      <Grid
+        container
+        direction="column"
+        sx={{
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Grid>
+          <Typography
+            componentName={componentName}
+            variant="body1"
+            gutterBottom
+          >
+            Task Manager
+          </Typography>
+        </Grid>
+      </Grid>
+      <LoadingButton componentName={componentName}>Add Task</LoadingButton>
     </Container>
   );
 };

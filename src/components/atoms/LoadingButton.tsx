@@ -1,7 +1,7 @@
 import MuiLoadingButton from "@mui/lab/LoadingButton";
 import type { LoadingButtonProps as MuiLoadingButtonProps } from "@mui/lab/LoadingButton";
-import Typography from "@mui/material/Typography";
 import type { ContainerProps } from "./Container";
+import { Typography } from "./Typography";
 
 interface LoadingButtonProps extends MuiLoadingButtonProps {
   componentName: ContainerProps["componentName"];
@@ -18,7 +18,7 @@ export const LoadingButton = ({
     <>
       <MuiLoadingButton
         {...props}
-        data-testid={`${componentName}-loading-button`}
+        data-testid={`${componentName}-Loading-button`}
         variant={variant}
         sx={{
           border: "2px solid #000000",
@@ -28,6 +28,7 @@ export const LoadingButton = ({
       />
       {helperText && (
         <Typography
+          componentName={`${componentName}-Loading-button-helper-text`}
           variant="caption"
           color="text.secondary"
           sx={{
