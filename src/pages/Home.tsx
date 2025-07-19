@@ -1,8 +1,19 @@
-import { Container, Typography, Button } from "@mui/material";
+import { Typography, Button } from "@mui/material";
+import { Container } from "../components/atoms";
 
 export const Home = () => {
+  const componentName = "Home";
+
   return (
-    <Container maxWidth="sm" sx={{ textAlign: "center", marginTop: "2rem" }}>
+    <Container
+      componentName={componentName}
+      sx={{
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 2,
+      }}
+    >
       <Typography variant="h4" gutterBottom>
         Task Manager
       </Typography>

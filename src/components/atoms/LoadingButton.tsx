@@ -1,11 +1,10 @@
-import MuiLoadingButton, {
-  LoadingButtonProps as MuiLoadingButtonProps,
-} from "@mui/lab/LoadingButton";
+import MuiLoadingButton from "@mui/lab/LoadingButton";
+import type { LoadingButtonProps as MuiLoadingButtonProps } from "@mui/lab/LoadingButton";
 import Typography from "@mui/material/Typography";
-import type { Container } from "react-dom/client";
+import type { ContainerProps } from "./Container";
 
 interface LoadingButtonProps extends MuiLoadingButtonProps {
-  componentName: Container["name"];
+  componentName: ContainerProps["componentName"];
   helperText?: string;
 }
 
